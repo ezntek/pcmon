@@ -37,5 +37,12 @@ class DataIO:
         elif not os.path.exists('.pclist'):
             return False
 
+    def getLogIn(self) -> Union[str, bool]:
+        if os.path.exists('.pclogin'):
+            with open('.pclogin') as loginFile:
+                return loginFile.read()
+        elif not os.path.exists('.pclogin'):
+            return False
+
     def writePCMonFile(self) -> bool:
         pass
