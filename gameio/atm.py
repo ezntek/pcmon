@@ -13,7 +13,7 @@ class PCCoinATM:
         if self.retval is False:
             Console.log('fatal error fileNotFoundError')
             pass
-        else if type(self.retval) == float:
+        elif type(self.retval) == float:
             self.balance = self.retval
             self.retval = None
 
@@ -57,7 +57,7 @@ class PCCoinATM:
         self.retval = DataIO().withdraw()
         if self.retval is False:
             print('fatal error filenotfound')
-        else if type(self.retval) == float:
+        elif type(self.retval) == float:
             self.balance += self.retval
             self.retval = None
 
