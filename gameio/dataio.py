@@ -1,9 +1,6 @@
 import os, sys
 from typing import Union
 
-from sqlalchemy import false
-from con import Console
-
 class DataIO:
     def __init__(self) -> None:
         self.readFile = []
@@ -20,7 +17,7 @@ class DataIO:
         except FileNotFoundError:
             return False
 
-    def withdraw(self) -> float:
+    def withdraw(self) -> Union[bool,float]:
         try:
             with open(".pcwallet") as wallet:
                 return float(wallet.read())
@@ -42,6 +39,14 @@ class DataIO:
             with open('.pclogin') as loginFile:
                 return loginFile.read()
         elif not os.path.exists('.pclogin'):
+            return False
+
+    def saveLogin(self, login) -> bool:
+        if not os.path.exists('.pclogin'):
+            with open ('.pclogin') as loginFile:
+                loginFile.write(str(login))
+                return True
+        elif os.path.exists('.pclogin'):
             return False
 
     def writePCMonFile(self) -> bool:

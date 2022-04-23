@@ -9,8 +9,8 @@ class ModSetup:
             self.mod_finding = f.read()
             if self.mod_finding:
                 try:
-                    with open(self.mod_finding) as fu:
-                        self.modfound = fuu.read()
+                    with open(self.mod_finding) as fu:                     
+                        self.modfound = fu.read()
                 except:
                     raise AssertionError
             else:
@@ -20,6 +20,4 @@ if __name__ == "__main__":
     u=ModSetup()
     u.modFinder()
 else:
-    print("why are u running this? play the game to install mods.")
-
-        
+    print("---by meowscripty---\n"+"why are u running this? play the game to install mods.")

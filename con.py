@@ -10,31 +10,29 @@ class Console:
             "game"
         ]
 
-    def log(p):
-        print("\n ls()log: {}\n".format(p))
+    def log(p): print("\nlog> {}\n".format(p))
 
-    def parseCommand(command, self) -> bool:
+    def parser(self, command):
         cmd = command.strip(' ').split(' ')
-        Console.log(cmd)
         if cmd[0] not in self.commandList:
             return False
         else:
-            if (cmd[0] == self.commandList[0]):
-                if (cmd[1] == "0"):
-                    sys.exit(0)
-                elif (cmd[1] == "1"):
-                    sys.exit(1)
-            if (cmd[0] == self.commandList[1]):
-                os.system("clear")
-            if (cmd[0] == self.commandList[2]):
-                pass
+            if cmd[0] == self.commandList[0]:
+                if int(cmd[1]) > 1:
+                    print('placeholder')
+                else:
+                    sys.exit(int(cmd[1]))
+            if cmd[0] == self.commandList[1]:
+                os.system('clear')
+            if cmd[0] == self.commandList[2]:
+                Console.log('placeholder')
+
 
     def prompt(self):
         while True:
-            commandInput = input("pcmon_debug> ")
-            print(commandInput)
-            self.retvals = Console().parseCommand(commandInput)
+            c = input('pcmon_console> ')
+            self.retvals = Console().parser(c)
+            if self.retvals is False:
+                Console.log('the command had failed to run.')
 
-            if (self.retvals == False):
-                Console.log("please enter a valid command.")
 
