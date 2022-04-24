@@ -4,7 +4,7 @@ from typing import Union
 class DataIO:
     def __init__(self) -> None:
         self.readFile = []
-        self.temp
+        self.temp = None
 
     def deposit(self, amount) -> Union[bool, float]:
         try:

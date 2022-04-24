@@ -1,6 +1,11 @@
 import os
 import sys
 
+class ConCommands:
+    def __init__(self) -> None:
+        self.usages = {
+            "exit" : "exit <0(no error code) or 1(error)>"
+        }
 class Console:
     def __init__(self):
         self.retvals = None
@@ -18,14 +23,22 @@ class Console:
             return False
         else:
             if cmd[0] == self.commandList[0]:
-                if int(cmd[1]) > 1:
-                    print('placeholder')
-                else:
-                    sys.exit(int(cmd[1]))
+                try:
+                    if int(cmd[1]) > 1:
+                        print('placeholder')
+                    elif cmd[1] == "catsAreNice":
+                        Console.log('~meow!~')
+                        sys.exit(0)
+                    else:
+                    #self.gamestate==False
+                        sys.exit(int(cmd[1]))
+                except IndexError:
+                    Console.log(ConCommands().usages["exit"])
             if cmd[0] == self.commandList[1]:
                 os.system('clear')
             if cmd[0] == self.commandList[2]:
-                Console.log('placeholder')
+                from game import Game
+                Game().startGame()
 
 
     def prompt(self):

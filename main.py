@@ -4,7 +4,7 @@ from con import Console
 class Main:
     def __init__(self) -> None:
         self.choices = None
-        self.vers = "commit 2 alpha"
+        self.vers = "alpha 5"
 
     def main(self):
         print("pcmon {}".format(self.vers))
