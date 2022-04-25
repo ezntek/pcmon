@@ -37,7 +37,7 @@ class Console:
             if cmd[0] == self.commandList[1]:
                 os.system('clear')
             if cmd[0] == self.commandList[2]:
-                from game import Game
+                from game.game import Game
                 Game().startGame()
 
 

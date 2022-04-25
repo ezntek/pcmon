@@ -9,7 +9,8 @@ class ModSetup(con):
                 self.mod_finding = f.read()
                 if self.mod_finding:
                     try:
-                        from self.getname import self.mod_finding
+                        pass
+                        #from self.getname import self.mod_finding
                     except:
                         print("can't load mod")
                         raise AssertionError
@@ -19,13 +20,13 @@ class ModSetup(con):
             print("file can't open")
             
 
-    def fileclose(self, f,con): 
-           if self.gamestate==Falses:
+    def fileclose(self, f, con): 
+           if self.gamestate==False:
             f.close()
              
             
                 
-if __name__ == __main__:
+if __name__ == "__main__":
     u=ModSetup()         
     u.modFinder()
 else:
