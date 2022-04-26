@@ -26,7 +26,7 @@ class DataIO:
 
     def loadPCMon(self) -> Union[list, bool]:
         try:
-            with open('.pclist') as list:
+            with open('.pclist', "t") as list:
                 mons, retvals = []
                 mons = list.readlines()
                 dictionary = json.loads('pcmonID.json')
@@ -38,14 +38,14 @@ class DataIO:
     
     def returnPCJson(self) -> Union[dict, bool]:
         try:
-            with open('pcmonID.json') as jsn:
+            with open('pcmonID.json', "r") as jsn:
                 return json.loads(jsn.readlines())
         except FileNotFoundError:
             return False
     
     def saveNewPCMon(self, id) -> bool:
         try:
-            with open('.pclist') as file:
+            with open('.pclist', "w") as file:
                 file.write(str(id)+"\n")
                 return True
         except FileNotFoundError:
@@ -61,11 +61,27 @@ class DataIO:
 
     def saveLogin(self, login) -> bool:
         if not os.path.exists('.pclogin'):
-            with open ('.pclogin') as loginFile:
+            with open ('.pclogin', "w") as loginFile:
                 loginFile.write(str(login))
                 return True
         elif os.path.exists('.pclogin'):
             return False
+
+    def writePCMetadata(self, name, xpinc, powerinc) -> bool:
+        with open('json/' + name + "-metadata.json", "t") as meta:
+            d = json.loads(meta.readlines())
+            d['xpval'] = int(d['xpval']) + int(xpinc)
+            d['powerval'] = int(d['powerval']) + int(powerinc)
+            meta.writelines(json.dumps(d))
+        return True     
+
+    def readPCMetadata(self, name) -> list:
+        with open('json/' + name + "-metadata.json", "t") as meta:
+            d = json.loads(meta.readlines())
+            retval = []
+            retval.append(d['xpval'])
+            retval.append(d['powerval'])
+            return retval
 
     def writePCMonFile(self) -> bool:
         pass

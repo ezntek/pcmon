@@ -1,4 +1,5 @@
 from gameio.dataio import DataIO
+from gameplay import Gameplay
 import time
 from con import Console
 from character.pcmon import Grassy, Wassy, Fissy
@@ -50,6 +51,14 @@ class Game:
             if self.queries not in self.retvals:
                 print('Please enter a valid choice!')
             else:
-                DataIO().saveNewPCMon(int(self.queries))
-                self.queries, self.retvals = None
+                if self.queries == pcnames[0]:
+                    mon = Grassy()
+                elif self.queries == pcnames[1]:
+                    mon = Wassy()
+                elif self.queries == pcnames[2]:
+                    mon = Fissy()
+                lis = DataIO.readPCMetadata()
+                mon.information['Experience'] += int(lis[0])
+                mon.information['Power'] += int(lis[1])
+                Gameplay().start(mon)
         
